@@ -303,11 +303,8 @@ local uiScreen = Instance.new('ScreenGui') do
     if (typeof(syn) == 'table' and typeof(syn.protect_gui) == 'function') then
         --syn.protect_gui(uiScreen)
     end
-    if (gethui) then
-        uiScreen.Parent = gethui()
-    else
+    
         uiScreen.Parent = game:GetService('CoreGui')
-    end
     
     local notifContainer = Instance.new('Frame') do 
         notifContainer.Active = false 
