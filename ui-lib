@@ -1520,7 +1520,7 @@ do
         self.lastPosition = mf.Position 
 
         -- Move to bottom right corner 
-      if not mf['#title-bar'] or not mf['#main-frame'] then
+      if not mf then
        return -- Stop execution if either element is missing
      end
         local screenSize = game:GetService("Workspace").CurrentCamera.ViewportSize
