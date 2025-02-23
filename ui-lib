@@ -1512,10 +1512,10 @@ do
             window.minimize = function(self) 
     local newState = not self.minimized
     local mf = self.instances.mainFrame
+    local bmin = mf['#title-bar']['#button-min']
      if not mf['#title-bar'] or not mf['#main-frame'] then
        return -- Stop execution if either element is missing
      end
-    local bmin = mf['#title-bar']['#button-min']
     local bminIcon = bmin['#icon']
 
     if newState then
