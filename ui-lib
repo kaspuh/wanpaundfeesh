@@ -1512,6 +1512,9 @@ do
             window.minimize = function(self) 
     local newState = not self.minimized
     local mf = self.instances.mainFrame
+    if not mf then
+       return 
+     end
     local bmin = mf['#title-bar']['#button-min']
     local bminIcon = bmin['#icon']
 
@@ -1519,7 +1522,7 @@ do
 
         self.lastPosition = mf.Position 
 
-      if not mf then
+      if not mf or not bmin then
        return 
      end
         local screenSize = game:GetService("Workspace").CurrentCamera.ViewportSize
