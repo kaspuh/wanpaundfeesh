@@ -1516,12 +1516,11 @@ do
     local bminIcon = bmin['#icon']
 
     if newState then
-        -- Save last known position before minimizing
+
         self.lastPosition = mf.Position 
 
-        -- Move to bottom right corner 
       if not mf then
-       return -- Stop execution if either element is missing
+       return 
      end
         local screenSize = game:GetService("Workspace").CurrentCamera.ViewportSize
         local newPosition = UDim2.new(1, -self.size.X.Offset - 10, 1, -30) -- Adjust for bottom-right
