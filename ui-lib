@@ -1513,16 +1513,16 @@ do
     local newState = not self.minimized
     local mf = self.instances.mainFrame
     local bmin = mf['#title-bar']['#button-min']
-     if not mf['#title-bar'] or not mf['#main-frame'] then
-       return -- Stop execution if either element is missing
-     end
     local bminIcon = bmin['#icon']
 
     if newState then
         -- Save last known position before minimizing
         self.lastPosition = mf.Position 
 
-        -- Move to bottom right corner
+        -- Move to bottom right corner 
+      if not mf['#title-bar'] or not mf['#main-frame'] then
+       return -- Stop execution if either element is missing
+     end
         local screenSize = game:GetService("Workspace").CurrentCamera.ViewportSize
         local newPosition = UDim2.new(1, -self.size.X.Offset - 10, 1, -30) -- Adjust for bottom-right
         tween(mf, {Position = newPosition, Size = UDim2.fromOffset(self.size.X.Offset, 26)}, 0.3, 1)
