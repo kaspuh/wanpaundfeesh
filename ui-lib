@@ -1510,22 +1510,18 @@ do
                 return new
             end
             window.minimize = function(self) 
-    local newState = not self.minimized
     local mf = self.instances.mainFrame
+    if not mf or not mf.Parent then
+        return -- Exit if the main frame is destroyed or no longer exists
+    end
 
-    if not mf then
-       return 
-     end
+    local newState = not self.minimized
     local bmin = mf['#title-bar']['#button-min']
     local bminIcon = bmin['#icon']
 
     if newState then
-
         self.lastPosition = mf.Position 
 
-      if not mf or not bmin then
-       return 
-     end
         local screenSize = game:GetService("Workspace").CurrentCamera.ViewportSize
         local newPosition = UDim2.new(1, -self.size.X.Offset - 10, 1, -30) -- Adjust for bottom-right
         tween(mf, {Position = newPosition, Size = UDim2.fromOffset(self.size.X.Offset, 26)}, 0.3, 1)
