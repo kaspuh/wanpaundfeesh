@@ -1509,48 +1509,54 @@ do
                 new.instances = instances
                 return new
             end
-            window.minimize = function(self) 
-                local newState = not self.minimized
-                local mf = self.instances.mainFrame
-                local bmin = mf['#title-bar']['#button-min']
-                local bminIcon = bmin['#icon']
-                
-                
-                if (newState) then
-                    tween(mf, {Size = UDim2.fromOffset(self.size.X.Offset, 26)}, 0.3, 1)
-                    bminIcon.Image = 'rbxassetid://9642646619'
-                    
-                    tween(bminIcon, {
-                        Rotation = 45,
-                        ImageColor3 = theme.Primary
-                    }, 0.3, 1)
-                    if (self.minFocused) then
-                        tween(bmin, {BackgroundColor3 = theme.Button4}, 0.2, 1)
-                    else
-                        tween(bmin, {BackgroundColor3 = theme.Button3}, 0.2, 1)
-                    end
-                    
-                    mf['#page-region'].Visible = false
-                    mf['#sidebar'].Visible = false
-                else
-                    tween(mf, {Size = self.size}, 0.3, 1)
-                    bminIcon.Image = 'rbxassetid://9642680675'
-                    tween(bminIcon, {
-                        Rotation = 0,
-                        ImageColor3 = Color3.fromRGB(255, 255, 255)
-                    }, 0.3, 1)
-                    
-                    if (self.minFocused) then
-                        tween(bmin, {BackgroundColor3 = theme.Button2}, 0.2, 1)
-                    else
-                        tween(bmin, {BackgroundColor3 = theme.Button1}, 0.2, 1)
-                    end
-                    
-                    mf['#page-region'].Visible = true
-                    mf['#sidebar'].Visible = true
-                end
-                self.minimized = newState
-            end            
+            window.minimize = function(self)
+    local newState = not self.minimized
+    local mf = self.instances.mainFrame
+    local bmin = mf['#title-bar']['#button-min']
+    local bminIcon = bmin['#icon']
+
+    if newState then
+        -- Move to bottom-right when minimized
+        local screenSize = game:GetService("Workspace").CurrentCamera.ViewportSize
+        local windowSize = self.size
+        local bottomRightPosition = UDim2.new(0, screenSize.X - windowSize.X.Offset - 10, 0, screenSize.Y - 36) -- 10px padding
+
+        tween(mf, {Position = bottomRightPosition, Size = UDim2.fromOffset(windowSize.X.Offset, 26)}, 0.3, 1)
+        bminIcon.Image = 'rbxassetid://9642646619'
+
+        tween(bminIcon, {
+            Rotation = 45,
+            ImageColor3 = theme.Primary
+        }, 0.3, 1)
+
+        if self.minFocused then
+            tween(bmin, {BackgroundColor3 = theme.Button4}, 0.2, 1)
+        else
+            tween(bmin, {BackgroundColor3 = theme.Button3}, 0.2, 1)
+        end
+
+        mf['#page-region'].Visible = false
+        mf['#sidebar'].Visible = false
+    else
+        -- Restore to original position and size
+        tween(mf, {Position = self.defaultPosition or UDim2.new(0.5, -windowSize.X.Offset / 2, 0.5, -windowSize.Y.Offset / 2), Size = self.size}, 0.3, 1)
+        bminIcon.Image = 'rbxassetid://9642680675'
+        tween(bminIcon, {
+            Rotation = 0,
+            ImageColor3 = Color3.fromRGB(255, 255, 255)
+        }, 0.3, 1)
+
+        if self.minFocused then
+            tween(bmin, {BackgroundColor3 = theme.Button2}, 0.2, 1)
+        else
+            tween(bmin, {BackgroundColor3 = theme.Button1}, 0.2, 1)
+        end
+
+        mf['#page-region'].Visible = true
+        mf['#sidebar'].Visible = true
+    end
+    self.minimized = newState
+end         
             
         end
         -- add the window class
