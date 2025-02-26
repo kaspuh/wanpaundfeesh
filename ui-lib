@@ -4670,6 +4670,14 @@ end
                 self:toggle()
             end
             
+            toggle.setValue = function(self, value)
+            if value then
+                self:enable()
+            else
+                self:disable()
+            end
+                return self
+            end
             toggle.signals = {
                 backToggle = {
                     MouseEnter = function(inst, toggle) 
