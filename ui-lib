@@ -4670,7 +4670,7 @@ end
                 self:toggle()
             end
             
-            toggle.setValue = function(self, value)
+            toggle.setState = function(self, value)
             if value then
                 self:enable()
             else
