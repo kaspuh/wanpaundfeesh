@@ -74,7 +74,7 @@ function obfuscate(source,VarName,WaterMark)
                 "PSU Fork? Nope.",
                 "Touch some grass",
                 "New update when?",
-                "GhostyDuckyy",
+                ".",
                 "Free obfuscator!",
                 "E",
                 random_(math.random(50,150)),
