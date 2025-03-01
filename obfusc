@@ -16,9 +16,9 @@ function obfuscate(source, VarName, WaterMark)
     local ticks = tick()
 
     if typeof(WaterMark) == "string" and WaterMark ~= nil then
-        WM = "    "..tostring(WaterMark).." | Secure by GhostyDuckyy#7698"
+        WM = "    "..tostring(WaterMark).." | Secure by Kaspuh"
     else
-        WM = "    ".."WaterMark".." | Secure by GhostyDuckyy#7698"
+        WM = "    ".."WaterMark".." | Secure by Kaspuh"
     end
 
     WM = "--[[".."\n".. tostring(WM) .."\n".."]]--".."\n\n"
@@ -69,13 +69,13 @@ function obfuscate(source, VarName, WaterMark)
 
         local topic = {
             "Deobfuscate?",
-            "Hello World!",
+            "Planet of the apes is a good movie.",
             "IronBrew Fork? Nope.",
             "PSU Fork? Nope.",
-            "Touch some grass",
+            "ever heard of grass?",
             "New update when?",
-            "GhostyDuckyy",
-            "Free obfuscator!",
+            "IronBrew who?",
+            "Moonsec? nah.",
             "E",
             random_(math.random(50,150)),
         }
