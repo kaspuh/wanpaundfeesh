@@ -5497,7 +5497,7 @@ end
                 return new
             end
             
-            
+      
             elemClasses.dropdown.addDropdown = function(self, settings) 
                 if (not typeof(settings) == 'table') then
                     return error('expected type table for settings', 2) 
