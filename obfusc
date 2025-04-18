@@ -40,7 +40,8 @@ function obfuscate(source, VarName, WaterMark)
     local xor_encrypt = function(str, key)
         local encrypted = {}
         for i = 1, #str do
-            bit32.bxor(string.byte(str:sub(i, i)), key)
+            local byte = string.byte(str:sub(i, i))
+            table.insert(encrypted, bit32.bxor(byte, key))
         end
         return "{" .. table.concat(encrypted, ",") .. "}"
     end
@@ -49,7 +50,7 @@ function obfuscate(source, VarName, WaterMark)
 local function xor_decrypt(data, key)
     local result = {}
     for _, byte in ipairs(data) do
-        table.insert(result, string.char(byte ~ key))
+        table.insert(result, string.char(bit32.bxor(byte, key)))
     end
     return table.concat(result)
 end
@@ -141,4 +142,4 @@ return function(source, CustomVarName, WaterMark)
     task.spawn(function()
         obfuscate(source, CustomVarName, WaterMark)
     end)
-end
+end)
