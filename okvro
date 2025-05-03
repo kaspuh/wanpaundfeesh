@@ -1,4 +1,3 @@
--- DarkBlueUI Library
 local DarkBlueUI = {}
 
 function DarkBlueUI:CreateWindow(titleText)
