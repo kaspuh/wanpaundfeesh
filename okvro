@@ -6,7 +6,7 @@ function DarkBlueUI:CreateWindow(titleText)
 	local gui = Instance.new("ScreenGui")
 	gui.Name = "DarkBlueThemeUI"
 	gui.ResetOnSpawn = false
-	gui.Parent = player:WaitForChild("CoreGui")
+	gui.Parent = player:WaitForChild("PlayerGui")
 
 	-- Main Frame
 	local frame = Instance.new("Frame")
